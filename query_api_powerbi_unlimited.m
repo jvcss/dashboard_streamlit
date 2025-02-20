@@ -1,4 +1,4 @@
-= (Url as text, Token as text, QuantidadeRegistrosPorPagina as number, OrderBy as text) =>
+(Url as text, Token as text, QuantidadeRegistrosPorPagina as number, OrderBy as text) =>
 let
     
     // Verificação da quantidade máxima de registros por página

@@ -1,4 +1,4 @@
-= (Url as text, Token as text, QuantidadeRegistrosPorPagina as number, OrderBy as text) =>
+(Url as text, Token as text, QuantidadeRegistrosPorPagina as number, OrderBy as text) =>
 let
     
     // Verificação da quantidade máxima de registros por página
@@ -17,7 +17,6 @@ let
             request = (skip as number, top as number) =>
             let
                 baseURL = Url,
-                filter = "year(dueDate) eq 2025",
                 url = baseURL & "?$skip=" & Text.From(skip) & "&$top=" & Text.From(top) & "&$orderby=" & Text.From(OrderBy) & "&$filter=year(dueDate) eq 2025",
                 Fonte = Json.Document(Web.Contents(url, [Headers=[apitoken=Token]]))
             in
@@ -44,7 +43,6 @@ let
 
             // Expandir a coluna 'data' para obter 'items'
             tabelaComItems = Table.ExpandRecordColumn(tabelaExpandida, "data", {"items"}, {"items"}),
-            
             #"items Expandido" = Table.ExpandListColumn(tabelaComItems, "items"),
     
             // Obter dinamicamente os nomes das colunas dos registros dentro de 'items'
