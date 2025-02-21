@@ -5,6 +5,10 @@ from utils.plot_utils import PlotUtils
 st.set_page_config(page_title="Dash Nibo", page_icon=":shark:", layout="wide")
 
 def main():
+    st.sidebar(title="Dash Nibo")
+    st.sidebar.write("This is a simple example of a Streamlit app.")
+    st.sidebar.write("You can use the buttons below to visualize different types of plots.")
+
     st.title("Dash Nibo")
     st.write("This is a simple example of a Streamlit app.")
 
