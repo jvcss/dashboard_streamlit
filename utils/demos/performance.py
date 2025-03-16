@@ -4,6 +4,9 @@ import threading
 import multiprocessing
 import requests
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+# Display results
+import pandas as pd
+import for_jupter as tools
 
 # CPU-bound task: Sum of squares
 def cpu_intensive_task(n):
@@ -91,12 +94,9 @@ def benchmark_io_task():
 cpu_results = benchmark_cpu_task(10**7, workers=4)
 io_results = benchmark_io_task()
 
-# Display results
-import pandas as pd
-import for_jupter as tools
-
 cpu_df = pd.DataFrame.from_dict(cpu_results, orient='index', columns=['Time (s)'])
 io_df = pd.DataFrame.from_dict(io_results, orient='index', columns=['Time (s)'])
-
+cpu_df.head()
+io_df.head()
 tools.display_dataframe_to_user(name="CPU Performance Comparison", dataframe=cpu_df)
 tools.display_dataframe_to_user(name="I/O Performance Comparison", dataframe=io_df)
