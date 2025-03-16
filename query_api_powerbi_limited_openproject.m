@@ -27,10 +27,10 @@ let
     // Garante que sempre exista a estrutura esperada
     FonteCorrigida = if Type.Is(Value.Type(Fonte), type record) and Record.HasFields(Fonte, "_embedded") 
         then Fonte
-        else [_embedded = [work_packages = {}]],
+        else [_embedded = [elements = {}]],
 
     // Obtém os dados da resposta e converte em tabela
-    TabelaItems = try Table.FromList(FonteCorrigida[_embedded][work_packages], Splitter.SplitByNothing(), null, null, ExtraValues.Error) otherwise #table({}, {}),
+    TabelaItems = try Table.FromList(FonteCorrigida[_embedded][elements], Splitter.SplitByNothing(), null, null, ExtraValues.Error) otherwise #table({}, {}),
 
     // Extrai dinamicamente os nomes das colunas (se houver dados)
     Colunas = if Table.RowCount(TabelaItems) > 0 then
